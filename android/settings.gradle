@@ -1,0 +1,3 @@
+rootProject.name = 'gewdDemo01'
+
+include ':app'
