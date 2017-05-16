@@ -1,3 +1,4 @@
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,29 +7,26 @@
 
 import React, { Component } from 'react';
 import {
+  AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 import Movie from './page/Movie';
-// 路由Navigator已经在0.44版本中废弃了
-import { Navigator } from 'react-native-deprecated-custom-components';
+import MovieDetail from './page/MovieDetail';
 
-export default class Root extends Component {
- 
-  render() {
-    return (
-      <Navigator  
-            initialRoute={{ name: 'Movie', component: Movie }}  
-            configureScene={(route) => {  
-            return Navigator.SceneConfigs.HorizontalSwipeJump;  
-        }}  
-        renderScene={(route, navigator) => {  
-            let Component = route.component;  
-            return <Component {...route.params} navigator={navigator} />  
-        }}/>  
-    );
-  }
-}
+import {StackNavigator} from 'react-navigation';
+
+const gewdDemo01 = StackNavigator({
+      Movie: {screen: Movie},
+      MovieDetail: {screen: MovieDetail},
+    },{
+      initialRouteName: 'Movie', // 默认显示界面
+      headerMode: 'none'
+    }
+);
+
+
+AppRegistry.registerComponent('gewdDemo01', () => gewdDemo01);
 

@@ -4,5 +4,4 @@
  * @flow
  */
 
-
-import Root from './app/Root';
+import Index from './test/Index';

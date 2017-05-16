@@ -20,7 +20,7 @@ export default class MovieDetail extends Component {
     super(props);
     this.state = {
       liked:false,
-      likesNum:this.props.likes
+      likesNum:this.props.navigation.state.params.likes
     }
     // 存储点赞数据
     this.historyLikes = [];
@@ -32,7 +32,7 @@ export default class MovieDetail extends Component {
     Storage.getValueForKey('user_like_history')
     .then(historyLikes => {
       this.historyLikes = historyLikes ? historyLikes : [];
-      if(this.historyLikes.includes(this.props.title)){
+      if(this.historyLikes.includes(this.props.navigation.state.params.title)){
 
         this.setState({
           liked:true
@@ -74,11 +74,12 @@ export default class MovieDetail extends Component {
   }
 
   render() {
-    let {title,likes} = this.props;
+    let {title,likes} = this.props.navigation.state.params;
     const img_arr = [require('../img/like_gray.png'),require('../img/like_red.png')];
     return (
       <View style={styles.container}>
         <View style={styles.titleView}>
+          <Text style={{fontSize:20,color:'#fff',position:'absolute',left:10}} onPress={()=>{this.props.navigation.goBack()}}>back</Text>
           <Text style={{fontSize:20,color:'#fff'}}>{title}</Text>
         </View>
         <View style={styles.likeView}>
@@ -102,7 +103,8 @@ const styles = StyleSheet.create({
     height:50,
     backgroundColor:'orange',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    flexDirection:'row'
   },
   likeView:{
     flex:1,

@@ -17,13 +17,10 @@ import Storage from '../util/Storage';
 
 import TestJson from '../json/test_1.json';
 
-import MovieDetail from './MovieDetail';
-
 export default class Movie extends Component {
   constructor(props){
     super(props);
     this.state = {
-        
     };
   }
 
@@ -97,17 +94,12 @@ class CellBoxView extends Component{
   
   // 跳转到详情页
   gotoDetailPage(item){
-    let navigator = this.props.navigator;
-    if(navigator){
-      navigator.push({
-        name: 'MovieDetail',  
-        component: MovieDetail,  
-        params:{
+    
+    const {navigate} = this.props.navigation;
+    navigate('MovieDetail',{
           title:item.title,
           likes:item.likes,
-        }
-      })
-    }
+    });
 
     // 浏览记录
     // 没有读过的话，push进去
